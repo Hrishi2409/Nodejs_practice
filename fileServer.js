@@ -8,24 +8,34 @@ const port = 3000;
 
 //function that retrieves files from the file folder 
 app.get('/files',(req,res)=>{
-  fs.readdir(path,join(__dirname,'./files/'),(err,files)=>
+  const filePath = path.join(__dirname,'./files/');
+  fs.readdir(filePath,'utf-8',(err,files)=>
   {
       if(err){
-          return res.status(500).json({error:'failed to retrieve files'});
+        console.log(err.message);
+          return res.send({error:'failed to retrieve files'});
       }
-  
-      res.sendFile(files);
+      
+      files.forEach(function(file){
+        const json = new Array(file);
+        res.send(json);
+      }) 
+      
   })
 });
 
 //gets files by filename given in the route parameters
 app.get('/files/:filename',(req,res)=>{
-  const filepath = path.join(__dirname,'./files/',req.params.filename)
+  const params = encodeURIComponent(req.params.filename);
+  const filepath = path.join(__dirname,'./files/',params)
   fs.readFile(filepath,  {encoding:'utf8'}, (err, data) => {
       if (err) {
+        console.log(err.message);
+
         return res.status(404).send('File not found');
       }
-      res.send(data);
+      const json = JSON.stringify(data);
+      res.send(json);
     });
 });
 
