@@ -5,7 +5,7 @@ const express = require('express');
 const port = 3000;
 const bodyParser = require('body-parser');
 const app =express();
-let users = [];
+var users =[];
 
 // app.use((req,res,next)=>{
 //     console.log("In comes a " + req.method + " to " + req.url);
@@ -27,7 +27,7 @@ let users = [];
 // })
 
 //authentication
-
+app.use(express.json());
 //POST route to signUp 
 
 app.post('/signup',(req,res)=>{
@@ -79,6 +79,7 @@ app.get('/data',(req,res)=>{
     var email = req.headers.email;
     var password = req.headers.password;
     let userFound = false;
+    
     for(var i=0;i<users.length;i++){
         if(users[i].email === email && users[i].password === password){
             userFound = true;
@@ -86,15 +87,17 @@ app.get('/data',(req,res)=>{
         }
     }
     if(userFound){
-        let userDetails = [];
+        var userDetails = [];
         for(var i = 0;i<users.length;i++){
-            usersDetails.push({
+            
+            userDetails.push({
                 firstName: users[i].firstName,
                 lastName: users[i].lastName,
                 email: users[i].email
             });
         }
-        res.send(JSON.stringify(usersDetails));
+        console.log(userDetails);
+        res.send(JSON.stringify(userDetails));
     }
     else{
         res.status(400).send("User not found");
