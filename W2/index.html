@@ -1,22 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>todo app</title>
+    <title>
+        TODO app
+    </title>
 </head>
+<script>
+    function parsedRes(data){
+        console.log(data);
+    }
+    function callback(res){
+        res.json().then(parsedRes);
+    }
+    function onShow(){
+        fetch("http://localhost:3000/todos",{
+            method:"GET",
+        }).then(callback)
+    }
+</script>
 <body>
-    <br>
+    Todo title
+    <input type="text" id="title1" placeholder="Title"></input>
+    <br><br>
+    Todo description
+    <input type="text" id="description" placeholder="Description"></input>
+    <br><br>
+    <button onclick="onPress()">send todo</button>
+    
+    <hr></hr>
+    
+    <div id="mainArea">
 
-    <input type="text" id="title" name="Title" placeholder="Title" >
-    <input type="text" id="description" name="Description" placeholder="Description">
-    <button> Add todo </button>
-    <button> Delete todo </button>
+        <button onclick="onShow()"> Show Todos </button>
 
-    <br></br>
-
-    <div>
-        <button> Show all Todos </button>
     </div>
 </body>
-</html>
