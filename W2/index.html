@@ -4,7 +4,21 @@
     </title>
 </head>
 <script>
-    function deleteTodo(){
+    function deleteResponse(){
+       console.log("delete done!.")
+    }
+    function deleteCallback(res){
+        res.json().then(deleteResponse)
+    }
+    function deleteTodo(id){
+        console.log(id);
+        fetch("http://localhost:3000/todos/"+ id,{
+            method:"DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+
+        }).then(deleteCallback)
 
     }
     
