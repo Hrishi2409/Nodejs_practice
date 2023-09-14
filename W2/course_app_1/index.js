@@ -61,8 +61,9 @@ app.post('/admin/courses', (req, res) => {
 
 app.put('/admin/courses/:courseId', (req, res) => {
   // logic to edit a course
-  const courseId = req.params.courseId;
+  const courseId = parseInt(req.params.courseId);
   const course = COURSES.find(c=>c.id===courseId);
+  console.log(course);
   if(course){
     Object.assign(course,req.body);// this Object.assign() takes two input target and source copies the source object values into the target object.
    res.json({message:"Course updated successfully!!"});  
@@ -96,7 +97,13 @@ app.post('/users/login', userAuth,(req, res) => {
 
 app.get('/users/courses', (req, res) => {
   // logic to list all courses
-  
+  let filteredArray=[];
+  for(var i =0;i<COURSES.length;i++){
+    if(COURSES[i].published){
+        filteredArray.push(COURSES[i]);
+    }
+  }
+  res.json({course:filteredArray});
   
 });
 
