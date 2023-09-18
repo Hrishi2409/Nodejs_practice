@@ -1,1 +1,0 @@
-This folder consist of React practice files where i have practice files of react.
