@@ -3,14 +3,30 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const Button = ({ children }) => {
+  console.log(children)
+  return (
+    <button>
+      please, my
+        {children}
+      are starving
+    </button>
+  )
+}
 
+// somewhere else
+
+
+function App() {
+ 
   return (
     <>
-      <h1>Zion BLack Vanji</h1>
+      <Button >
+       <h1>Children</h1>
+      </Button>
     </>
   )
 }
+
 
 export default App
