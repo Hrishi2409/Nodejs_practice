@@ -18,7 +18,16 @@ Components often need to change what’s on the screen as a result of an interac
         const [index, setIndex] = useState(0);
 - #### *When you call useState, you are telling React that you want this component to remember something:*
         const [index, setIndex] = useState(0);
-    
+- #### *Giving a component multiple state variables:*  
+     You can have as many state variables of as many types as you like in one component.    
+- #### *State is isolated and private:*
+  - State is local to a component instance on the screen. In other words, **if you render the same component twice, each copy will have completely isolated state!** Changing one of them will not affect the other. 
+  - This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it’s “local” to the specific place on the screen.
+  - Unlike props, **state is fully private to the component declaring it**. The parent component can’t change it. This lets you add state to any component or remove it without impacting the rest of the components.
+
+## Reference 
+HandsOn State Docs:  [State In React](https://react.dev/learn/state-a-components-memory)
+
 
 
 
