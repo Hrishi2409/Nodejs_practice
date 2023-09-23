@@ -1,9 +1,10 @@
-import { Card,Button,TextField} from "@mui/material"
+import { Card,Button,TextField, Box} from "@mui/material"
 
 function LogIn(){
     return(
-        <div style={{display:"flex",justifyContent:"center",marginTop:20}}>
-         <Card sx={{p:5,maxWidth: 400}}>
+        <Box >
+            <div style={{display:"flex",justifyContent:"center",marginTop:20,}}>
+         <Card sx={{p:5,maxWidth: 400,}}>
             <span style={{fontSize:21,fontWeight:'bold'}}><em>Log in to your Udemy account</em></span>
              <div>
                     <TextField   sx={{mt:2,mb:3,width:300}}
@@ -27,6 +28,8 @@ function LogIn(){
         <Button variant="contained" color="secondary"> Log In </Button>
         </Card>
         </div>
+        </Box>
+        
         
     )
 }
